@@ -1,0 +1,24 @@
+service: numpy-test
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: python3.8
+  apiGateway:
+    shouldStartNameWithService: true
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: users/create
+          method: get
+          cors: true
+plugins:
+  - serverless-python-requirements
+
+# custom:
+#   pythonRequirements:
+#     dockerizePip: non-linux
